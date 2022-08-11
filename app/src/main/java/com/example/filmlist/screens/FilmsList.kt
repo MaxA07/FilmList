@@ -5,17 +5,48 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.filmlist.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.filmlist.MainViewModel
+import com.example.filmlist.MainViewModelFactory
+import com.example.filmlist.adapters.FilmsAdapter
+import com.example.filmlist.databinding.FragmentFilmsListBinding
+import com.example.filmlist.repository.Repository
 
 class FilmsList : Fragment() {
+
+    lateinit var binding: FragmentFilmsListBinding
+    lateinit var viewModel: MainViewModel
+    val adapter by lazy { FilmsAdapter() }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_films_list, container, false)
+        binding = FragmentFilmsListBinding.inflate(inflater, container, false)
+
+        setupRecyclerView()
+
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel.getFilms()
+        viewModel.responseFilms.observe(viewLifecycleOwner, Observer { response ->
+
+            if (response.isSuccessful) {
+                response.body()?.let { adapter.setData(it) }
+
+            }
+        })
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     companion object {
