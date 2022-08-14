@@ -1,4 +1,4 @@
-package com.example.filmlist
+package com.example.filmlist.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,7 +9,6 @@ import com.example.filmlist.model.Actor
 import com.example.filmlist.model.Films
 import com.example.filmlist.repository.Repository
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import java.lang.Exception
 
 class MainViewModel(private val repository: Repository): ViewModel() {
@@ -34,16 +33,4 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         }
     }
 
-    fun getActors() {
-        viewModelScope.launch {
-
-            try {
-                val response = repository.getActor()
-                _actorsLiveData.value = response
-            }catch (e: Exception) {
-                Log.e("Error", e.message.toString())
-            }
-
-        }
-    }
 }

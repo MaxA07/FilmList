@@ -5,4 +5,5 @@
     <string name="title">Название фильма</string>
     <string name="name">Фамилия И.О.</string>
     <string name="actors_list">Список актеров</string>
+    <string name="year">1995</string>
 </resources>
