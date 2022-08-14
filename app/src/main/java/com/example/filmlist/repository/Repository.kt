@@ -8,11 +8,11 @@ import retrofit2.Response
 
 class Repository {
 
-    suspend fun getFilm(): Response<Films> {
+    suspend fun getFilm(): Films {
         return RetrofitInstance.api.getFilm()
     }
 
-    suspend fun getActor(): Response<Actor> {
+    suspend fun getActor(): Actor {
         return RetrofitInstance.api.getActor()
     }
 }

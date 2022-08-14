@@ -3,7 +3,7 @@ package com.example.filmlist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.filmlist.databinding.ActivityMainBinding
-import com.example.filmlist.screens.FilmsList
+import com.example.filmlist.screens.FilmsListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, FilmsList.newInstance())
+                .add(R.id.fragment_container, FilmsListFragment.newInstance())
                 .commit()
         }
     }

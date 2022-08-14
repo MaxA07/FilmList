@@ -12,9 +12,7 @@ import com.example.filmlist.model.Item
 
 class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
 
-    private var filmsList = emptyList<Films>()
-//    private var directorsList = emptyList<Item>()
-//    private var actorsList = emptyList<Actor>()
+    private var filmsList = emptyList<Item>()
 
     class FilmsViewHolder(
         val binding: ListItemBinding
@@ -28,9 +26,9 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
-        holder.binding.filmName.text = filmsList[position].items.toString()
-//        holder.binding.directorName.text = directorsList[position].directorName.toString()
-//        holder.binding.actors.text = actorsList[position].actorName.toString()
+        holder.binding.filmName.text = filmsList[position].title
+        holder.binding.directorName.text = filmsList[position].directorName
+
     }
 
     override fun getItemCount(): Int {
@@ -38,16 +36,8 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(
-        newFilmList: Films)
-//        //newDirectorsList: List<Item>,
-//        newActorsList: Actor)
-                                    {
-
-        filmsList = listOf(newFilmList)
-//        //directorsList = newDirectorsList
-//        actorsList = listOf(newActorsList)
-
+    fun setData(newFilmList: List<Item>) {
+        filmsList = newFilmList
         notifyDataSetChanged()
 
     }
