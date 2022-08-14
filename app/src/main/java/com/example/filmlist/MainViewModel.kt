@@ -19,8 +19,6 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         get() = _filmsLiveData
     val actorsLiveData: LiveData<Actor>
         get() = _actorsLiveData
-    //var responseFilms: MutableLiveData<Response<Films>> = MutableLiveData()
-    //var responseActors: MutableLiveData<Response<Actor>> = MutableLiveData()
 
     fun getFilms() {
         viewModelScope.launch {

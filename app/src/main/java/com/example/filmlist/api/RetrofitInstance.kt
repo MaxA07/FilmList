@@ -19,7 +19,4 @@ object RetrofitInstance {
         retrofit.create(FilmApi::class.java)
     }
 
-//    val api: ItemApi by lazy {
-//        retrofit.create(FilmApi::class.java)
-//    }
 }
