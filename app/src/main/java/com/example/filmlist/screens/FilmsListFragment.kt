@@ -36,7 +36,8 @@ class FilmsListFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         viewModel.getFilms()
         viewModel.filmsLiveData.observe(viewLifecycleOwner) { response ->
-            adapter.setData(response.items)
+            val filmsAndActors = response.items.map { it.copy(actors = it.actors.distinct()) }
+            adapter.setData(filmsAndActors)
         }
         return binding.root
     }

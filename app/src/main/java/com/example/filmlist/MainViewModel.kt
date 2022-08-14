@@ -1,5 +1,6 @@
 package com.example.filmlist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,7 +28,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
                 val response = repository.getFilm()
                 _filmsLiveData.value = response
             } catch (e: Exception) {
-
+                Log.e("Error", e.message.toString())
             }
 
         }
@@ -40,7 +41,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
                 val response = repository.getActor()
                 _actorsLiveData.value = response
             }catch (e: Exception) {
-
+                Log.e("Error", e.message.toString())
             }
 
         }
