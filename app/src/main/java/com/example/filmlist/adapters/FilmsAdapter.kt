@@ -35,7 +35,6 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
         holder.binding.releaseYear.text = "(${filmsList[position].releaseYear})"
         holder.binding.directorName.text = filmsList[position].directorName
 
-
     }
 
     override fun getItemCount(): Int {
@@ -58,7 +57,7 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newFilmList: List<Item>) {
-        filmsList = newFilmList
+        filmsList = newFilmList.sortedBy { it.releaseYear }
         notifyDataSetChanged()
 
     }
