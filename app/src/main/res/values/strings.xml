@@ -2,4 +2,7 @@
     <string name="app_name">FilmList</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Название фильма</string>
+    <string name="name">Фамилия И.О.</string>
+    <string name="actors_list">Список актеров</string>
 </resources>

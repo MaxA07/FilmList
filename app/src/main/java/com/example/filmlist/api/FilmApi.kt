@@ -8,8 +8,8 @@ import retrofit2.http.GET
 interface FilmApi {
 
     @GET("constanta-android-dev/intership-wellcome-task/main/films.json")
-    suspend fun getFilm(): Response<Films>
+    suspend fun getFilm(): Films
 
     @GET("constanta-android-dev/intership-wellcome-task/main/films.json")
-    suspend fun getActor(): Response<Actor>
+    suspend fun getActor(): Actor
 }
