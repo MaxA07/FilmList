@@ -31,9 +31,19 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
-        holder.binding.filmName.text = filmsList[position].title
-        holder.binding.releaseYear.text = "(${filmsList[position].releaseYear})"
-        holder.binding.directorName.text = filmsList[position].directorName
+        val film = filmsList[position]
+        holder.binding.filmName.text = film.title
+        holder.binding.releaseYear.text = "(${film.releaseYear})"
+        holder.binding.directorName.text = film.directorName
+
+        if (film.actors.isNotEmpty()) {
+            holder.binding.actors.text = buildString {
+                film.actors.forEach {actor ->
+                    append(actor.actorName)
+                    append(", ")
+                }
+            }.dropLast(2)
+        }
 
     }
 
