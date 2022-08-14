@@ -32,6 +32,7 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
 
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
         holder.binding.filmName.text = filmsList[position].title
+        holder.binding.releaseYear.text = "(${filmsList[position].releaseYear})"
         holder.binding.directorName.text = filmsList[position].directorName
 
 
