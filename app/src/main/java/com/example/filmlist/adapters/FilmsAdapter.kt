@@ -7,16 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmlist.databinding.ListItemBinding
-import com.example.filmlist.model.Actor
 import com.example.filmlist.model.Item
 import com.example.filmlist.screens.FilmsListFragment
-
-
 
 class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
 
     private var filmsList = emptyList<Item>()
-    private var actorsList = emptyList<Actor>()
 
     class FilmsViewHolder(
         val binding: ListItemBinding
@@ -33,8 +29,9 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
         val film = filmsList[position]
         holder.binding.filmName.text = film.title
-        holder.binding.releaseYear.text = "(${film.releaseYear})"
-        holder.binding.directorName.text = film.directorName
+        holder.binding.releaseYear.text = buildString {
+                append("(${film.releaseYear})")
+            }
 
         if (film.actors.isNotEmpty()) {
             holder.binding.actors.text = buildString {
@@ -45,6 +42,14 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
             }.dropLast(2)
         }
 
+        holder.binding.directorName.text = buildString {
+            val splitString = film.directorName.split(" ")
+            append(splitString[0] )
+            val surname = splitString[1].split("")
+            append(" ${surname[1]}.")
+            val lastName = splitString[2].split("")
+            append("${lastName[1]}.")
+        }
     }
 
     override fun getItemCount(): Int {
@@ -58,7 +63,6 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
         val filmTitle = "Фильм ${holder.binding.filmName.text} был нажат"
 
         holder.itemView.setOnClickListener {
-
             Log.d("toast", "click")
             Toast.makeText(context, filmTitle, Toast.LENGTH_SHORT).show()
             FilmsListFragment.showDefaultDialog(holder.itemView.context, filmTitle)
@@ -69,7 +73,6 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
     fun setData(newFilmList: List<Item>) {
         filmsList = newFilmList.sortedBy { it.releaseYear }
         notifyDataSetChanged()
-
     }
 
 }

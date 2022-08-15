@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.filmlist.MainViewModel
-import com.example.filmlist.MainViewModelFactory
+import com.example.filmlist.viewmodels.MainViewModel
+import com.example.filmlist.viewmodels.MainViewModelFactory
 import com.example.filmlist.adapters.FilmsAdapter
 import com.example.filmlist.databinding.FragmentFilmsListBinding
 import com.example.filmlist.repository.Repository
@@ -21,7 +20,7 @@ class FilmsListFragment : Fragment() {
 
     lateinit var binding: FragmentFilmsListBinding
     lateinit var viewModel: MainViewModel
-    val adapter by lazy { FilmsAdapter() }
+    private val adapter by lazy { FilmsAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
