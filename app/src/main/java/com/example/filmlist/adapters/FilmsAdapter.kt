@@ -43,11 +43,11 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
         }
 
         holder.binding.directorName.text = buildString {
-            val splitString = film.directorName.split(" ")
-            append(splitString[0] )
-            val surname = splitString[1].split("")
-            append(" ${surname[1]}.")
-            val lastName = splitString[2].split("")
+            val secondName = film.directorName.split(" ")
+            append(secondName[2] )
+            val name = secondName[0].split("")
+            append(" ${name[1]}.")
+            val lastName = secondName[1].split("")
             append("${lastName[1]}.")
         }
     }
@@ -65,7 +65,7 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
         holder.itemView.setOnClickListener {
             Log.d("toast", "click")
             Toast.makeText(context, filmTitle, Toast.LENGTH_SHORT).show()
-            FilmsListFragment.showDefaultDialog(holder.itemView.context, filmTitle)
+            FilmsListFragment.showDefaultDialog(context, filmTitle)
         }
     }
 
